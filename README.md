@@ -1,8 +1,9 @@
-![CI](https://github.com/armory-plugins/datadogEventListener/workflows/CI/badge.svg?branch=master)
-![Latest Kork](https://github.com/armory-plugins/datadogEventListener/workflows/Latest%20Kork/badge.svg?branch=master)
-![Latest Echo](https://github.com/armory-plugins/datadogEventListener/workflows/Latest%20Echo/badge.svg?branch=master)
 
-Spinnaker Plugin for adding a Datadog event listener
+Spinnaker Plugin for adding a NewRelic event listener.
+
+TODO: 
+- Add git actions to continuously check Kork/Echo version compatibility.
+- The plugin does not yet compress event messages before sending to NewRelic, which NewRelic recommends. Therefore some events may not be successfully captured if any of the event attributes are too large.
 
 <h2>Usage</h2>
 
@@ -21,8 +22,6 @@ spinnaker:
             config:
               apiKey: 'key'
 ```
-
-Or use the [pluginRepository](https://github.com/armory-plugins/pluginRepository) to avoid copying the plugin `.zip` artifact.
 
 To debug the plugin inside a Spinnaker service (like Echo) using IntelliJ Idea follow these steps:
 
