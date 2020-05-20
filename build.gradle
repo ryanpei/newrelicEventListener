@@ -15,7 +15,7 @@ plugins {
 apply plugin: "io.spinnaker.plugin.bundler"
 
 spinnakerBundle {
-  pluginId = "Armory.NewrelicEventListener"
+  pluginId = "Armory.NewRelicEventListener"
   description = "A plugin that provides a Newrelic event listener."
   provider = "https://github.com/claymccoy"
   version = rootProject.version

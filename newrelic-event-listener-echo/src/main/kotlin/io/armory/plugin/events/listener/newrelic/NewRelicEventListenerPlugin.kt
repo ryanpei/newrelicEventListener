@@ -42,7 +42,7 @@ class NewRelicEventListenerPlugin(wrapper: PluginWrapper) : Plugin(wrapper) {
 }
 
 data class NewRelicEvent(
-        val title: String,
+        val eventType: String,
         val text: String,
         val priority: String,
         val tags: Set<String>,
@@ -83,19 +83,19 @@ open class NewRelicEventListener(val configuration: NewRelicEventListenerConfig)
         }
 
         val newRelicEvent = NewRelicEvent(
-                "Spinnaker Event",
+                configuration.eventType,
                 mapper.writeValueAsString(event),
                 "normal",
                 tags,
                 "info"
         )
         val newRelicEventJson = mapper.writeValueAsString(newRelicEvent)
-        val newRelicUrl = "https://insights-collector.newrelic.com/v1/accounts/2712677/events"
 
         val body = RequestBody.create(
                 MediaType.parse("application/json"), newRelicEventJson)
         val request = Request.Builder()
-                .url("$newRelicUrl?api_key=${configuration.apiKey}")
+                .url("https://insights-collector.newrelic.com/v1/accounts/${configuration.account}/events")
+                .addHeader("X-Insert-Key", configuration.apiKey)
                 .post(body)
                 .build()
         val call = getHttpClient().newCall(request)

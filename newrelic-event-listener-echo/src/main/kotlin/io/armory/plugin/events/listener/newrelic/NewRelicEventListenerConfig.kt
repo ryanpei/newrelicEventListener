@@ -17,5 +17,5 @@ package io.armory.plugin.events.listener.newrelic
 
 import com.netflix.spinnaker.kork.plugins.api.ExtensionConfiguration
 
-@ExtensionConfiguration("armory.newrelicEventListener")
-data class NewRelicEventListenerConfig(var apiKey: String)
+@ExtensionConfiguration("armory.NewRelicEventListener")
+data class NewRelicEventListenerConfig(var account: String, var apiKey: String, var eventType: String)

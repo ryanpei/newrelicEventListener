@@ -37,7 +37,8 @@ class NewRelicEventListenerTest : JUnit5Minutests {
 
     class HttpMockableNewRelicEventListener(
             val okHttpClient: OkHttpClient,
-            val log: Logger) : NewRelicEventListener(NewRelicEventListenerConfig("asdf")) {
+            val log: Logger) : NewRelicEventListener(NewRelicEventListenerConfig(
+                "asdf","ghjk","zxcv")) {
 
         override fun getHttpClient() : OkHttpClient {
             return okHttpClient
@@ -96,7 +97,6 @@ class NewRelicEventListenerTest : JUnit5Minutests {
                 okHttpClient.newCall(
                         withArg {
                             expectThat(it.method()).isEqualTo("POST")
-                            // expectThat(it.url().toString()).isEqualTo("https://api.NewRelichq.com/api/v1/events?api_key=asdf")
                             val newRelicEvent = mapper.readValue(bodyToString(it.body()!!), NewRelicEvent::class.java)
                             expectThat(newRelicEvent.tags).isEqualTo(setOf(
                                     "source:orca",
@@ -179,7 +179,6 @@ class NewRelicEventListenerTest : JUnit5Minutests {
                 okHttpClient.newCall(
                         withArg {
                             expectThat(it.method()).isEqualTo("POST")
-                          //  expectThat(it.url().toString()).isEqualTo("https://api.NewRelichq.com/api/v1/events?api_key=asdf")
                             val newRelicEvent = mapper.readValue(bodyToString(it.body()!!), NewRelicEvent::class.java)
                             expectThat(newRelicEvent.tags).isEqualTo(setOf(
                                     "source:orca",
