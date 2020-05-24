@@ -20,7 +20,9 @@ spinnaker:
           armory.newRelicEventListener:
             enabled: true
             config:
+              account: 'NewRelic account number'
               apiKey: 'key'
+              eventType: 'this is a required field for the NewRelic Events API, can be whatever you want'
 ```
 
 To debug the plugin inside a Spinnaker service (like Echo) using IntelliJ Idea follow these steps:
